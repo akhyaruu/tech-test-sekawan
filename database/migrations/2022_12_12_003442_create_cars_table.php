@@ -23,7 +23,6 @@ class CreateCarsTable extends Migration
             $table->string('jenis_bahan_bakar');
             $table->string('kapasitas_tangki');
             $table->year('tahun_keluar');
-            $table->timestamps();
         });
     }
 

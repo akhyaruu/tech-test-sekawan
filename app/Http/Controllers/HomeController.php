@@ -26,20 +26,10 @@ class HomeController extends Controller
     {
         // return view('home');
 
-        switch (Auth::user()->role_id) {
-            case '1':
-                // return redirect()->route('user');
-                return view('home');
-                break;
-            case '2':
-                return redirect()->route('user');
-                break;
-            case '3':
-                return redirect()->route('user');
-                break;
-            default:
-                return view('home');
-                break;
+        if (Auth::user()->role_id == 1) {
+            return redirect()->route('admin');
+        } else {
+            return redirect()->route('user');
         }
     }
 }

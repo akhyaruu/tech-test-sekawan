@@ -21,7 +21,7 @@ class CreateBookingsTable extends Migration
             $table->integer('kilometer_akhir');
             $table->float('bbm_terpakai');
             $table->string('tujuan');
-            $table->string('keterangan');
+            $table->string('durasi');
             $table->dateTime('tgl_pengajuan');
             $table->dateTime('tgl_pengembalian');
         });
