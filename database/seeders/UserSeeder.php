@@ -19,19 +19,19 @@ class UserSeeder extends Seeder
                 'role_id' => '1',
                 'nama' => 'admin',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('admin123'),
+                'password' => bcrypt('admin'),
             ],
             [
                 'role_id' => '2',
                 'nama' => 'Muammar Itqon',
                 'email' => 'itqon@gmail.com',
-                'password' => bcrypt('itqon123'),
+                'password' => bcrypt('itqon'),
             ],
             [
                 'role_id' => '3',
                 'nama' => 'Syifaul Qolbi',
                 'email' => 'qolbi@gmail.com',
-                'password' => bcrypt('qolbi123'),
+                'password' => bcrypt('qolbi'),
             ]
         ]);
     }
