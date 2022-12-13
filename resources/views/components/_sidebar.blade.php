@@ -18,14 +18,14 @@
     </a>
 </li>
 <li class="sidebar-item">
-    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false"><i class="fas fa-history"
-            aria-hidden="true"></i>
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.history') }}"
+        aria-expanded="false"><i class="fas fa-history" aria-hidden="true"></i>
         <span class="hide-menu">History</span>
     </a>
 </li>
 @else
 <li class="sidebar-item">
-    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false"><i
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('user') }}" aria-expanded="false"><i
             class="fas fa-sticky-note" aria-hidden="true"></i>
         <span class="hide-menu">Persetujuan</span>
     </a>

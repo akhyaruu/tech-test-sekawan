@@ -38,18 +38,65 @@
                         <td>{{ $item->durasi }}</td>
                         <td>{{ date("F jS, Y", strtotime($item->tgl_pengajuan)); }}</td>
                         <td class="d-flex">
-                            <form action="" method="post">
-                                @csrf
-                                <input type="hidden" name="" value="">
-                                <button onclick="return confirm('Apakah kamu yakin untuk menyelesaikan pemesanan ini?')"
-                                    type="submit" class="btn btn-primary">Selesai</button>
-                            </form>
+                            <button id="btnSelesai" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#selesaiModal" value="{{ $item->id }}">
+                                Selesai
+                            </button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="selesaiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <form action="{{ route('update.ongoing') }}" method="post">
+                        @csrf
+                        <input id="inputBookingId" type="hidden" name="booking_id" required>
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Selesaikan Pemesanan</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="col-form-label">Kilometer (KM) Akhir:</label>
+                                <input name="kilometer_akhir" type="text" class="form-control"
+                                    placeholder="Masukan kilometer akhir mobil" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label">BBM Terpakai:</label>
+                                <input name="bbm_terpakai" type="text" class="form-control"
+                                    placeholder="Masukan BBM terpakai (liter)" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $("#btnSelesai").click(function() {
+            const bookingId =  $('#btnSelesai').val()
+            $('#inputBookingId').val(bookingId);
+        });
+
+    });
+</script>
 @endsection

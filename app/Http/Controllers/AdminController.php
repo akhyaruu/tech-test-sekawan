@@ -58,12 +58,31 @@ class AdminController extends Controller
 
     public function indexOngoing()
     {
-        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '=', '1')->get();
+        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '=', '1')
+            ->where('tgl_pengembalian', '=', null)->get();
         return view('admin.ongoing', compact('bookings'));
     }
 
-    public function updateOngoing()
+    public function updateOngoing(Request $request)
     {
+        $validate = $request->validate([
+            'kilometer_akhir' => 'required',
+            'bbm_terpakai' => 'required|string',
+        ]);
+
+        Booking::where('id', '=', $request->booking_id)->update([
+            'kilometer_akhir' => $request->kilometer_akhir,
+            'bbm_terpakai' => $request->bbm_terpakai,
+            'tgl_pengembalian' => now()
+        ]);
+        return back()->with('success',  'Data pemesanan berhasil diperbarui, pemesanan telah berakhir');
+    }
+
+    public function indexHistory()
+    {
+        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '=', '1')
+            ->where('tgl_pengembalian', '!=', null)->get();
+        return view('admin.history', compact('bookings'));
     }
 
 

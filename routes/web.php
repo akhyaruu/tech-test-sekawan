@@ -30,7 +30,8 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/pemesanan', [AdminController::class, 'indexPemesanan'])->name('index.pemesanan');
     Route::post('/store/pemesanan', [AdminController::class, 'storePemesanan'])->name('store.pemesanan');
     Route::get('/ongoing', [AdminController::class, 'indexOngoing'])->name('index.ongoing');
-    Route::get('/update/ongoing', [AdminController::class, 'updateOngoing'])->name('update.ongoing');
+    Route::post('/update/ongoing', [AdminController::class, 'updateOngoing'])->name('update.ongoing');
+    Route::get('/history', [AdminController::class, 'indexHistory'])->name('index.history');
 });
 
 Route::prefix('/user')->middleware(['auth', 'user'])->group(function () {
