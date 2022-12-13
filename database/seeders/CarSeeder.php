@@ -52,6 +52,18 @@ class CarSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'nama' => 'Mitsubishi Pajero',
+                'tipe_id' => '1',
+                'merek' => 'Mitsubushi',
+                'warna' => 'Hitam',
+                'cc_mesin' => '2500',
+                'jenis_bahan_bakar' => 'Gasoline',
+                'kapasitas_tangki' => '78',
+                'tahun_keluar' => '2016',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

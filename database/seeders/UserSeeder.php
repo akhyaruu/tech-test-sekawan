@@ -23,15 +23,15 @@ class UserSeeder extends Seeder
             ],
             [
                 'role_id' => '2',
-                'nama' => 'Muammar Itqon',
-                'email' => 'itqon@gmail.com',
-                'password' => bcrypt('itqon'),
+                'nama' => 'Muammar Adam',
+                'email' => 'adam@gmail.com',
+                'password' => bcrypt('adam'),
             ],
             [
                 'role_id' => '3',
-                'nama' => 'Syifaul Qolbi',
-                'email' => 'qolbi@gmail.com',
-                'password' => bcrypt('qolbi'),
+                'nama' => 'Syifaul Hanif',
+                'email' => 'hanif@gmail.com',
+                'password' => bcrypt('hanif'),
             ]
         ]);
     }
