@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BookingsExport;
+use Excel;
 use App\Models\Booking;
 use App\Models\BookingApproval;
 use App\Models\Car;
@@ -19,7 +21,7 @@ class AdminController extends Controller
 
     public function indexPemesanan()
     {
-        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '!=', '1')->get();
+        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '=', null)->get();
         $bookingApprovals = BookingApproval::latest()->get();
         $cars = DB::table('cars')
             ->leftJoin('bookings', 'cars.id', '=', 'bookings.mobil_id')
@@ -85,41 +87,9 @@ class AdminController extends Controller
         return view('admin.history', compact('bookings'));
     }
 
-
-
-    public function create()
+    public function export()
     {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
+        return Excel::download(new BookingsExport, 'bookings.xlsx');
     }
 
     public function tes()

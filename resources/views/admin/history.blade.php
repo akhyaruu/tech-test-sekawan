@@ -16,7 +16,7 @@
         @endif
 
 
-        <button type="button" class="btn btn-success mb-3 py-2">Generate Excel</button>
+        <a href="{{ route('bookings.export') }}" type="button" class="btn btn-success mb-3 py-2">Generate Excel</a>
 
         <div class="white-box">
             <table id="mainTable" class="table no-wrap data-table table-bordered">

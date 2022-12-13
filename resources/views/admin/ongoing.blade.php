@@ -65,12 +65,12 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label class="col-form-label">Kilometer (KM) Akhir:</label>
-                                <input name="kilometer_akhir" type="text" class="form-control"
+                                <input name="kilometer_akhir" type="number" step="0.01" class="form-control"
                                     placeholder="Masukan kilometer akhir mobil" required>
                             </div>
                             <div class="mb-3">
                                 <label class="col-form-label">BBM Terpakai:</label>
-                                <input name="bbm_terpakai" type="text" class="form-control"
+                                <input name="bbm_terpakai" type="number" step="0.01" class="form-control"
                                     placeholder="Masukan BBM terpakai (liter)" required>
                             </div>
                         </div>

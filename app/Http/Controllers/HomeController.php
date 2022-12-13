@@ -27,7 +27,7 @@ class HomeController extends Controller
         // return view('home');
 
         if (Auth::user()->role_id == 1) {
-            return redirect()->route('admin');
+            return redirect()->route('index.pemesanan');
         } else {
             return redirect()->route('user');
         }

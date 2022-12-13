@@ -16,22 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
     return redirect('/login');
 });
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
-
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
     Route::get('/pemesanan', [AdminController::class, 'indexPemesanan'])->name('index.pemesanan');
     Route::post('/store/pemesanan', [AdminController::class, 'storePemesanan'])->name('store.pemesanan');
     Route::get('/ongoing', [AdminController::class, 'indexOngoing'])->name('index.ongoing');
     Route::post('/update/ongoing', [AdminController::class, 'updateOngoing'])->name('update.ongoing');
     Route::get('/history', [AdminController::class, 'indexHistory'])->name('index.history');
+    Route::get('/bookings/export/', [AdminController::class, 'export'])->name('bookings.export');
 });
 
 Route::prefix('/user')->middleware(['auth', 'user'])->group(function () {
