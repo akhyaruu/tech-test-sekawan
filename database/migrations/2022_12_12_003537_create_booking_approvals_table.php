@@ -17,7 +17,7 @@ class CreateBookingApprovalsTable extends Migration
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings');
             $table->foreignId('user_id')->constrained('users');
-            $table->integer('status');
+            $table->integer('status')->default('0');
             $table->timestamps();
         });
     }

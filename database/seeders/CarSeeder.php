@@ -24,6 +24,8 @@ class CarSeeder extends Seeder
                 'jenis_bahan_bakar' => 'Gasoline',
                 'kapasitas_tangki' => '40',
                 'tahun_keluar' => '2017',
+                'created_at' => now(),
+                'updated_at' => now(),
 
             ],
             [
@@ -35,6 +37,8 @@ class CarSeeder extends Seeder
                 'jenis_bahan_bakar' => 'Gasoline',
                 'kapasitas_tangki' => '60',
                 'tahun_keluar' => '2019',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Daihatsu Sigra',
@@ -45,6 +49,8 @@ class CarSeeder extends Seeder
                 'jenis_bahan_bakar' => 'Gasoline',
                 'kapasitas_tangki' => '40',
                 'tahun_keluar' => '2019',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

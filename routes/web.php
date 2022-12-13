@@ -25,8 +25,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
+
+
+
+
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
-    Route::get('/pemesanan', [AdminController::class, 'pemesanan'])->name('pemesanan');
+    Route::get('/pemesanan', [AdminController::class, 'indexPemesanan'])->name('index.pemesanan');
+    Route::post('/store/pemesanan', [AdminController::class, 'storePemesanan'])->name('store.pemesanan');
 });
 
 Route::prefix('/user')->middleware(['auth', 'user'])->group(function () {

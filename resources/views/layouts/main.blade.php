@@ -9,6 +9,7 @@
     <title>Sistem Pemesanan Kendaraan</title>
     <link href="{{ asset('new_dashboard/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('new_dashboard/css/datatable.css') }}" rel="stylesheet">
+    <link href="{{ asset('new_dashboard/css/select2.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -111,6 +112,7 @@
     {{-- <script src="{{ asset('new_dashboard') }}/js/sidebarmenu.js"></script> --}}
     <script src="{{ asset('new_dashboard/js/custom.js') }}"></script>
     <script src="{{ asset('new_dashboard/js/datatable.js') }}"></script>
+    <script src="{{ asset('new_dashboard/js/select2.min.js') }}"></script>
     <script>
         $(function() {
         $('.data-table').DataTable();

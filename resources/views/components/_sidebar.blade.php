@@ -6,7 +6,7 @@
     </a>
 </li>
 <li class="sidebar-item">
-    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('pemesanan') }}"
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.pemesanan') }}"
         aria-expanded="false"><i class="fas fa-car" aria-hidden="true"></i>
         <span class="hide-menu">Pemesanan</span>
     </a>

@@ -17,13 +17,13 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('nama');
             $table->foreignId('mobil_id')->constrained('cars');
-            $table->integer('kilometer_awal');
-            $table->integer('kilometer_akhir');
-            $table->float('bbm_terpakai');
+            $table->float('kilometer_awal');
+            $table->float('kilometer_akhir')->nullable();
+            $table->float('bbm_terpakai')->nullable();
             $table->string('tujuan');
-            $table->string('durasi');
-            $table->dateTime('tgl_pengajuan');
-            $table->dateTime('tgl_pengembalian');
+            $table->string('durasi')->nullable();
+            $table->dateTime('tgl_pengajuan')->nullable();
+            $table->dateTime('tgl_pengembalian')->nullable();
         });
     }
 

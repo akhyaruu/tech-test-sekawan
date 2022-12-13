@@ -9,4 +9,12 @@ class Booking extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    protected $fillable = [
+        'nama',
+        'mobil_id',
+        'kilometer_awal',
+        'tujuan',
+        'durasi',
+    ];
 }

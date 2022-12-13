@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class);
+    }
 }
