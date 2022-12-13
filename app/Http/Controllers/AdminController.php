@@ -19,9 +19,13 @@ class AdminController extends Controller
 
     public function indexPemesanan()
     {
-        $mobil = Car::latest()->get();
+        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '!=', '1')->get();
+        $bookingApprovals = BookingApproval::latest()->get();
+        $cars = DB::table('cars')
+            ->leftJoin('bookings', 'cars.id', '=', 'bookings.mobil_id')
+            ->select('cars.*', 'bookings.mobil_id')->get();
         $users = User::latest()->get();
-        return view('admin.pemesanan', compact('mobil', 'users'));
+        return view('admin.pemesanan', compact('cars', 'users', 'bookings', 'bookingApprovals'));
     }
 
     public function storePemesanan(Request $request)
@@ -51,6 +55,17 @@ class AdminController extends Controller
 
         return back()->with('success',  'Data pemesanan berhasil ditambahkan');
     }
+
+    public function indexOngoing()
+    {
+        $bookings = Booking::orderBy('tgl_pengajuan', 'desc')->where('status', '=', '1')->get();
+        return view('admin.ongoing', compact('bookings'));
+    }
+
+    public function updateOngoing()
+    {
+    }
+
 
 
     public function create()

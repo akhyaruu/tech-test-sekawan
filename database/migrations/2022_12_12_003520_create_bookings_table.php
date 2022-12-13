@@ -22,6 +22,7 @@ class CreateBookingsTable extends Migration
             $table->float('bbm_terpakai')->nullable();
             $table->string('tujuan');
             $table->string('durasi')->nullable();
+            $table->string('status')->nullable();
             $table->dateTime('tgl_pengajuan')->nullable();
             $table->dateTime('tgl_pengembalian')->nullable();
         });

@@ -2,83 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\BookingApproval;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('user.index');
+        $bookings =  DB::table('booking_approvals')
+            ->join('bookings', 'booking_approvals.booking_id', '=', 'bookings.id')
+            ->join('users', 'booking_approvals.user_id', '=', 'users.id')
+            ->join('cars', 'bookings.mobil_id', '=', 'cars.id')
+            ->select('bookings.nama as nama_peminjam', 'cars.nama as nama_mobil', 'bookings.tujuan', 'bookings.durasi', 'bookings.tgl_pengajuan', 'bookings.id as booking_id')
+            ->where('booking_approvals.user_id', '=', Auth::user()->id)
+            ->where('booking_approvals.status', '=', '0')
+            ->get();
+
+        return view('user.index', compact('bookings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        //
-    }
+        BookingApproval::where('booking_id', '=', $request->booking_id)
+            ->where('user_id', '=', Auth::user()->id)
+            ->update(['status' => 1]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $bookingApprovalsCheck = BookingApproval::where('booking_id', '=', $request->booking_id)->get();
+        $count = count($bookingApprovalsCheck);
+        $iteration = 0;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        foreach ($bookingApprovalsCheck as $item) {
+            if ($item->status == 1) {
+                $iteration++;
+            }
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        // semua user yg di assign sudah menyetujui
+        if ($iteration == $count) {
+            Booking::where('id', '=', $request->booking_id)->update(['status' => 1]);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return back()->with('success',  'Persetujuan berhasil diperbarui');
     }
 }

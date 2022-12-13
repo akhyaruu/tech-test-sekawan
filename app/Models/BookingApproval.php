@@ -14,4 +14,14 @@ class BookingApproval extends Model
         'user_id',
         'status',
     ];
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

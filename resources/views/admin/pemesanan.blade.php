@@ -15,7 +15,6 @@
         <x-alert type="success" :message="session('success')" />
         @endif
 
-
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary mb-3 py-2" data-bs-toggle="modal" data-bs-target="#tambah">
             Tambah
@@ -32,19 +31,19 @@
                             <th class="border">Tujuan</th>
                             <th class="border">Durasi</th>
                             <th class="border">Tgl Pengajuan</th>
-                            <th class="border">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($bookings as $item)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->car->nama }}</td>
+                            <td>{{ $item->tujuan }}</td>
+                            <td>{{ $item->durasi }}</td>
+                            <td>{{ date("F jS, Y", strtotime($item->tgl_pengajuan)); }}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -72,9 +71,9 @@
                                 <select name="mobil_id" class="form-select" aria-label="Default select example"
                                     required>
                                     <option selected disabled>Pilih mobil</option>
-                                    @foreach ($mobil as $item)
-                                    <!-- sudah di sewa (menunggu persetujuan/telah disetujui) -->
-                                    @if (isset($item->booking))
+                                    @foreach ($cars as $item)
+                                    <!-- dapatkan mobil yg belum disewa -->
+                                    @if ($item->id != $item->mobil_id)
                                     <option value="{{ $item->id }}">{{ $item->nama }}: {{ $item->warna }}, {{
                                         $item->cc_mesin }} cc, tahun {{ $item->tahun_keluar }}
                                     </option>
@@ -127,7 +126,6 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

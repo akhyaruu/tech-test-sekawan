@@ -17,4 +17,9 @@ class Booking extends Model
         'tujuan',
         'durasi',
     ];
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class, 'mobil_id', 'id');
+    }
 }
