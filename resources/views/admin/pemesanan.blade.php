@@ -64,7 +64,7 @@
                             <div class="mb-3">
                                 <label class="col-form-label">Nama Pemesan:</label>
                                 <input name="nama" type="text" class="form-control" placeholder="Masukan nama pemesan"
-                                    required>
+                                    autocomplete="false" required>
                             </div>
                             <div class="mb-3">
                                 <label class="col-form-label">Pilih Mobil:</label>
